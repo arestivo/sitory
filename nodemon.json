@@ -1,0 +1,9 @@
+{
+  "ignore": [
+    "public",
+    "node_modules",
+    ".git"
+  ], 
+  "verbose": true,
+  "ext": "*"
+}

@@ -1,0 +1,8 @@
+bin
+assets
+content
+data
+layouts
+public
+config.yaml
+node_modules
