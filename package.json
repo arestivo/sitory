@@ -4,6 +4,7 @@
   "description": "A dead simple static web site generator",
   "main": "index.js",
   "author": "André Restivo",
+  "repository": "https://github.com/arestivo/sitory",
   "license": "MIT",
   "dependencies": {
     "fs-extra": "^10.0.0",
