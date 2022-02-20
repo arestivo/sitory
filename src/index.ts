@@ -23,7 +23,7 @@ const argv = yargs
       alias: 'c',
       description: 'config file to use',
       type: 'string',
-      default: 'config.xml'
+      default: 'config.yaml'
     }
   })
   .command('serve', 'start a webserver serving the site', {
