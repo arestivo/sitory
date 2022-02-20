@@ -27,9 +27,9 @@ sitory build
 sitory serve
 ```
 
-This will create a new folder called &lt;path&gt;, initialize a default *sitory* website inside that path, and serve it at the default port 3000.
+This will create a new folder called ```path```, initialize a default *sitory* website inside that folder, and serve it at the default port 3000.
 
-Then just open http://localhost:3000 to see your brand new *sitory* website.
+Then open http://localhost:3000 to see your brand new *sitory* website.
 
 ## How does it Work
 
