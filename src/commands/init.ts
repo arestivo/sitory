@@ -93,16 +93,16 @@ Donec vel sapien imperdiet, varius est eget, tincidunt nisl. Quisque sollicitudi
   `
 
   const config = `
-baseUrl: /
-template: default
+# baseUrl: /
+# template: default
   `
 
   fs.writeFileSync(`${path}/assets/css/style.css`, css.trim())
   console.log('Created a default stylesheet in assets/css/style.css')
   fs.writeFileSync(`${path}/content/index.md`, page.trim())
   console.log('Created a default markdown page in content/index.md')
-  fs.writeFileSync(`${path}/content/config.yaml`, config.trim())
-  console.log('Created a default configuration in content/config.yaml')
+  fs.writeFileSync(`${path}/config.yaml`, config.trim())
+  console.log('Created a default configuration in config.yaml')
   fs.writeFileSync(`${path}/layouts/pages/default.hbs`, template.trim())
   console.log('Created a default page layout in layouts/pages/default.hbs')
 }
