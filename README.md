@@ -49,13 +49,13 @@ When you run ```sitory build``` in a folder with a *sitory* project, *sitory* wi
 
 ## A Complete Example
 
-Set the ```title``` variable in ```/config.yaml``` to 'Sitory Example':
+1. Set the ```title``` variable in ```/config.yaml``` to 'Sitory Example':
 
 ```yaml
 title: Sitory Example
 ```
 
-Create ```content/books/config.yaml```:
+2. Create ```content/books/config.yaml```:
 
 ```yaml
 title: Sitory Example | Books
@@ -63,13 +63,13 @@ title: Sitory Example | Books
 
 Now, inside the ```books``` folder, all pages will receive this updated ```title``` variable.
 
-Replace the generated /content/index.md with:
+3. Replace the generated /content/index.md with:
 
 ```markdown
 [books](books)
 ```
 
-Replace the generated ```/layouts/pages/default.hbs``` so that it uses the ```title``` variable:
+4. Replace the generated ```/layouts/pages/default.hbs``` so that it uses the ```title``` variable:
 
 ```html
 <!DOCTYPE html>
@@ -87,7 +87,7 @@ Replace the generated ```/layouts/pages/default.hbs``` so that it uses the ```ti
 </html>
 ```
 
-Create a data file in ```data/books.yaml```:
+5. Create a data file in ```data/books.yaml```:
 
 ```yaml
 - title: Dune
@@ -98,7 +98,7 @@ Create a data file in ```data/books.yaml```:
   year: 1968
 ```
 
-Create a new page at ```/content/books/index.md``` with:
+6. Create a new page at ```/content/books/index.md``` with:
 
 ```markdown
 ---
@@ -108,7 +108,7 @@ books: =books.yaml=
 These are some of my books:
 ```
 
-Create a new ```/layouts/pages/book-list.hbs``` that can display a list of books:
+7. Create a new ```/layouts/pages/book-list.hbs``` that can display a list of books:
 
 ```html
 <!DOCTYPE html>
@@ -129,19 +129,19 @@ Create a new ```/layouts/pages/book-list.hbs``` that can display a list of books
 </html>
 ```
 
-Create a new partial at ```layouts/partials/book.hbs``` with:
+8. Create a new partial at ```layouts/partials/book.hbs``` with:
 
 ```html
 <li>{{book.title}} by {{book.author}} ({{book.year}})</li>
 ```
 
-Now, lets call this partial from the book-list template. Replace the ```each``` loop with:
+9. Now, lets call this partial from the book-list template. Replace the ```each``` loop with:
 
 ```html
 {{#each data.books}}{{>book book=this}}{{/each}}
 ```
 
-Create another partial at ```layouts/partials/head.hbs``` with:
+10. Create another partial at ```layouts/partials/head.hbs``` with:
 
 ```html
 <head>
@@ -152,10 +152,10 @@ Create another partial at ```layouts/partials/head.hbs``` with:
 </head>
 ```
 
-Replace this code in both page layouts with a call to the partial:
+11. Replace this code in both page layouts with a call to the partial:
 
 ```html
 {{>head}}
 ```
 
-Finally, adjust ```assets/css/style.css``` to your liking!
+12. Finally, adjust ```assets/css/style.css``` to your liking!
