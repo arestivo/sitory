@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import yargs from 'yargs'
+import yargs, { string } from 'yargs'
 import { build } from './commands/build'
 import { init } from './commands/init'
 import { serve } from './commands/serve'
@@ -11,7 +11,13 @@ const argv = yargs
   .scriptName('sitory')
   .strict()
   .demandCommand(1)
-  .command('init', 'initialize a sitory site in the current directory')
+  .command('init [path]', 'initialize a sitory site in the current directory', (yargs) => {
+    yargs.positional('path', {
+      description: 'the folder to initialize',
+      type: 'string',
+      default: '.'
+    })
+  })
   .command('build', 'build the site', {
     config: {
       alias: 'c',
@@ -39,4 +45,4 @@ const argv = yargs
 
 if (argv._[0] === 'serve') serve(parseInt(argv['port'] as string, 10))
 if (argv._[0] === 'build') build(argv['config'] as string)
-if (argv._[0] === 'init') init()
+if (argv._[0] === 'init') init(argv['path'] as string)

@@ -1,17 +1,27 @@
 import * as fs from 'fs-extra'
 
-export function init() {
-  if (fs.readdirSync('.').length > 0) {
-    console.log('\x1B[31mDirectory is not empty')
+export function init(path: string) {
+  if (fs.existsSync(path) && !fs.statSync(path).isDirectory()) {
+    console.log(`\x1B[31mPath ${path} exists and is not a folder`)
+    return
   }
 
-  fs.ensureDirSync('assets')
-  fs.ensureDirSync('assets/css')
-  fs.ensureDirSync('content')
-  fs.ensureDirSync('data')
-  fs.ensureDirSync('layouts')
-  fs.ensureDirSync('layouts/partials')
-  fs.ensureDirSync('layouts/pages')
+
+  if (fs.existsSync(path) && fs.readdirSync(path).length > 0) {
+    console.log(`\x1B[31mFolder ${path} is not empty`)
+    return
+  }
+
+  fs.ensureDirSync(`${path}`)
+  fs.ensureDirSync(`${path}/assets`)
+  fs.ensureDirSync(`${path}/assets/css`)
+  fs.ensureDirSync(`${path}/content`)
+  fs.ensureDirSync(`${path}/data`)
+  fs.ensureDirSync(`${path}/layouts`)
+  fs.ensureDirSync(`${path}/layouts/partials`)
+  fs.ensureDirSync(`${path}/layouts/pages`)
+
+  console.log('Created folder structure')
 
   const template = `
 <!DOCTYPE html>
@@ -87,8 +97,12 @@ baseUrl: /
 template: default
   `
 
-  fs.writeFileSync('assets/css/style.css', css.trim())
-  fs.writeFileSync('content/index.md', page.trim())
-  fs.writeFileSync('content/config.yaml', config.trim())
-  fs.writeFileSync('layouts/pages/default.hbs', template.trim())
+  fs.writeFileSync(`${path}/assets/css/style.css`, css.trim())
+  console.log('Created a default stylesheet in assets/css/style.css')
+  fs.writeFileSync(`${path}/content/index.md`, page.trim())
+  console.log('Created a default markdown page in content/index.md')
+  fs.writeFileSync(`${path}/content/config.yaml`, config.trim())
+  console.log('Created a default configuration in content/config.yaml')
+  fs.writeFileSync(`${path}/layouts/pages/default.hbs`, template.trim())
+  console.log('Created a default page layout in layouts/pages/default.hbs')
 }
