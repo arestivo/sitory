@@ -55,9 +55,9 @@ export class ContentManager {
 
     const rendered = template({ content, data: context.config })
 
-    this.writeToPublic(context.config, path, replaceExtension(file, 'html'), rendered)
+    console.log(`Processed ${ContentManager.folder}${path}${file}`)
 
-    console.log(`Generated ${ContentManager.folder}${path}${file}`)
+    this.writeToPublic(context.config, path, replaceExtension(file, 'html'), rendered)
   }
 
   async generateAll(path: string = '/') {
@@ -81,8 +81,10 @@ export class ContentManager {
     if (file === 'index.html') file = ''
     else file = removeExtension(file)
 
-    await fs.ensureDir(`${PublicManager.folder}${path}${file}`)
+    const folder = `${PublicManager.folder}${path}${file}/`.replace(/([^:]\/)\/+/g, "$1")
+    await fs.ensureDir(folder)
 
-    fs.writeFile(`${PublicManager.folder}/${path}${file}/index.html`, content)
+    fs.writeFile(`${folder}index.html`, content)
+    console.log(`Wrote file ${folder}index.html`)
   }
 }

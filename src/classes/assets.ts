@@ -13,6 +13,7 @@ export class AssetManager {
   }
 
   async copyToPublic() {
+    console.log(`Copied assets from ${AssetManager.folder} to ${PublicManager.folder}`)
     return fs.copy(AssetManager.folder, PublicManager.folder)
   }
 }
