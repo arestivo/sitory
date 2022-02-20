@@ -1,6 +1,6 @@
 # Sitory
 
-*Sitory* is a dead-simple static website generator written in TypeScript.
+*Sitory* is a dead-simple static website generator written in TypeScript using [Marked](https://marked.js.org/) and [handlebars](https://handlebarsjs.com/).
 
 ## Installing
 
