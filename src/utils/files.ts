@@ -26,3 +26,7 @@ export function replaceExtension(file: string, extension: string) {
   parts.push(extension)
   return parts.join('.')
 }
+
+export function removeExtraSlashes(path: string) {
+  return path.replace(/([^:]\/)\/+/g, "$1")
+}

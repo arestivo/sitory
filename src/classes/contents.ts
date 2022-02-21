@@ -8,7 +8,7 @@ import hljs from 'highlight.js'
 
 import { Configuration, ConfigurationManager } from './configuration'
 
-import { copyContentToPublic, removeExtension, replaceExtension } from '../utils/files'
+import { copyContentToPublic, removeExtension, removeExtraSlashes, replaceExtension } from '../utils/files'
 import { TemplateManager } from './templates'
 import { PublicManager } from './public '
 
@@ -81,7 +81,7 @@ export class ContentManager {
     if (file === 'index.html') file = ''
     else file = removeExtension(file)
 
-    const folder = `${PublicManager.folder}${path}${file}/`.replace(/([^:]\/)\/+/g, "$1")
+    const folder = removeExtraSlashes(`${PublicManager.folder}${path}${file}/`)
     await fs.ensureDir(folder)
 
     fs.writeFile(`${folder}index.html`, content)
