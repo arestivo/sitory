@@ -8,7 +8,7 @@ import hljs from 'highlight.js'
 
 import { Configuration, ConfigurationManager } from './configuration'
 
-import { copyContentToPublic, getExtension, removeExtension, replaceExtension } from '../utils/files'
+import { copyContentToPublic, removeExtension, replaceExtension } from '../utils/files'
 import { TemplateManager } from './templates'
 import { PublicManager } from './public '
 
