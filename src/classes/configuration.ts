@@ -6,7 +6,7 @@ import { DataManager } from './data'
 
 export type Configuration = { 
   baseUrl: string,
-  template: string 
+  template: string
 }
 
 export class ConfigurationManager {

@@ -12,6 +12,8 @@ import { copyContentToPublic, removeExtension, removeExtraSlashes, replaceExtens
 import { TemplateManager } from './templates'
 import { PublicManager } from './public '
 
+type Crumb = { text: string, path: string, exists: boolean }
+
 export class ContentManager {
   static folder = 'content'
 
@@ -23,6 +25,28 @@ export class ContentManager {
  
   static markdown(md: string, base: string) {
     return marked.parse(md, { baseUrl: base, highlight: (code, lang) => hljs.highlight(code, {language: lang}).value})
+  }
+
+  static crumbsFromPath(path: string) {
+    const crumbs : Crumb[] = []
+    let current = ''
+
+    const parts = removeExtraSlashes(path).split('/').filter(p => p !== '')
+    for (const part of parts) {
+      if (part !== 'index.md') {
+        if (part.endsWith('.md')) {
+          const name = removeExtension(part)
+          const exists = fs.existsSync(`${ContentManager.folder}/${current}${name}/index.md`) || fs.existsSync(`${ContentManager.folder}/${current}${name}.md`)
+          current += name + '/'
+          crumbs.push({text: name, path: current, exists})  
+        } else {
+          const exists = fs.existsSync(`${ContentManager.folder}/${current}${part}/index.md`) || fs.existsSync(`${ContentManager.folder}/${current}${part}.md`)
+          current += part + '/'
+          crumbs.push({text: part, path: current, exists})  
+        }  
+      }
+    }
+    return crumbs
   }
 
   async readPreamble(content: string) {
@@ -53,7 +77,7 @@ export class ContentManager {
     const content = ContentManager.markdown(empty({}), base)
     const template = hb.compile(layout)
 
-    const rendered = template({ content, data: context.config })
+    const rendered = template({ content, data: context.config, crumbs: ContentManager.crumbsFromPath(`${path}${file}`) })
 
     console.log(`Processed ${ContentManager.folder}${path}${file}`)
 
