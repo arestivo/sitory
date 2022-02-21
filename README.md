@@ -31,6 +31,27 @@ This will create a new folder called ```path```, initialize a default *sitory* w
 
 Then open http://localhost:3000 to see your brand new *sitory* website.
 
+## Usage
+
+```bash
+sitory <command>
+
+Commands:
+  sitory init  [path]       initialize a sitory site in the current directory
+  sitory build [-c config]  build the site
+  sitory serve [-p port]    start a webserver serving the site
+
+Options:
+  --version  Show version number                                       [boolean]
+  --help     Show help                                                 [boolean]
+
+Examples:
+  sitory init           Initialize a sitori website at the current directory
+  sitory build          Build the sitori website at the current directory
+  sitory serve          Serve the website at http://localhost:3000
+  sitory serve -p 5000  Serve the website at http://localhost:5000
+```
+
 ## How does it Work
 
 When you run ```sitory build``` in a folder with a *sitory* project, *sitory* will generate a static website in the ```public``` folder inside that path.
