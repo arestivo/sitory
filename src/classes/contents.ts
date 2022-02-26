@@ -74,7 +74,7 @@ export class ContentManager {
     const base = (context.config.baseUrl + path + (file === 'index.md' ? '' : (removeExtension(file) + '/'))).replace('//', '/')
 
     const empty = hb.compile(markdown, { noEscape: true })
-    const content = ContentManager.markdown(empty({}), base)
+    const content = ContentManager.markdown(empty({data: context.config}), base)
     const template = hb.compile(layout)
 
     const rendered = template({ content, data: context.config, crumbs: ContentManager.crumbsFromPath(`${path}${file}`) })
