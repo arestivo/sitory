@@ -27,7 +27,7 @@ export class TemplateManager {
   async registerHelpers(config: Configuration) {
     hb.registerHelper("md", function(markdown: string) {
       const empty = hb.compile(markdown, { noEscape: true })
-      const content = ContentManager.markdown(empty({}), config.baseUrl)
+      const content = ContentManager.markdown(empty({data: config}), config.baseUrl)
   
       return new hb.SafeString(content)
     });
