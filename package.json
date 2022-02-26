@@ -1,6 +1,6 @@
 {
   "name": "sitory",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A dead simple static web site generator",
   "main": "index.js",
   "author": "André Restivo",
