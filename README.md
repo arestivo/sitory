@@ -1,5 +1,7 @@
 # Sitory
 
+<img src="assets/sitory.svg" width="128" height="128" align="right">
+
 *Sitory* is a dead-simple static website generator written in TypeScript using [Marked](https://marked.js.org/) and [handlebars](https://handlebarsjs.com/).
 
 ## Installing
