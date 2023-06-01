@@ -5,6 +5,7 @@
   "main": "index.js",
   "author": "André Restivo",
   "repository": "https://github.com/arestivo/sitory",
+  "icon": "assets/sitory.svg",
   "license": "MIT",
   "dependencies": {
     "@types/node": "^17.0.16",
